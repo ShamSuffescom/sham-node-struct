@@ -17,7 +17,7 @@ const authMiddleware = async (req, res, next) => {
     }
 
     if (isTokenBlacklisted(token)) {
-        return globalFunctions.sendErrorResponse({ message: 'authMiddleware: Token has been logged out' }, res);
+        return globalFunctions.sendErrorResponse({ message: 'authMiddleware(isTokenBlacklisted): Token has been logged out' }, res);
     }
 
 
@@ -25,7 +25,7 @@ const authMiddleware = async (req, res, next) => {
     req.user = await User.findById(decoded.user.id).select('-password');
     next();
   } catch (err) {
-    return globalFunctions.sendErrorResponse({ message: 'authMiddleware: Token has been logged out' }, res);
+    return globalFunctions.sendErrorResponse({ message: 'authMiddleware(catch): Token has been logged out' }, res);
   }
 };
 
