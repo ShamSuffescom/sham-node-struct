@@ -11,8 +11,11 @@ const getAdminProfile = async (req, res) => {
 };
 
 const getAdminDashboard = async (req, res) => {
-  // Implement admin-specific logic here
-  res.json({ message: 'Admin dashboard' });
+  try {
+    return globalFunctions.sendSuccessResponse({ data: 'Admin dashboard' }, res);
+  } catch (err) {
+    return globalFunctions.sendErrorResponse(err, res);
+  }
 };
 
 module.exports = {

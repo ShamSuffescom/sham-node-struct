@@ -5,7 +5,7 @@ const roleMiddleware = require('../middleware/roleMiddleware');
 
 const router = express.Router();
 
-router.get('/profile', authMiddleware, getUserProfile);
-router.get('/dashboard', authMiddleware, roleMiddleware(['user']), getUserDashboard);
+router.get('/profile', authMiddleware, roleMiddleware(['admin','user']), getUserProfile);
+router.get('/dashboard', authMiddleware, roleMiddleware(['admin','user']), getUserDashboard);
 
 module.exports = router;

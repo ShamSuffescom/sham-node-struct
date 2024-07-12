@@ -11,8 +11,12 @@ const getUserProfile = async (req, res) => {
 };
 
 const getUserDashboard = async (req, res) => {
-  // Implement user-specific logic here
-  res.json({ message: 'User dashboard' });
+  try {
+    const user = await User.findById(req.user.id).select('-password');
+    return globalFunctions.sendSuccessResponse({ data: 'User dashboard' }, res);
+  } catch (err) {
+    return globalFunctions.sendErrorResponse(err, res);
+  }
 };
 
 module.exports = {
